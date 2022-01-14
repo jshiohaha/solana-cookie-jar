@@ -1,0 +1,42 @@
+.input--field--container {
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+}
+
+.input--amount--field {
+    background: none;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    width: calc(100% - 1rem);
+    height: 100%;
+    padding: 0 1rem;
+}
+
+.max--token--button {
+    background-color: rgba(236, 236, 236, 0.75);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    height: max-content;
+    font-size: 1rem;
+    font-weight: 500;
+    width: max-content;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.max--token--button:hover {
+    cursor: pointer;
+}
+
+.input--disabled {
+    pointer-events: none;
+    opacity: 50%;
+}
+
+.invalid--input {
+    border: 2px solid red;
+}

@@ -1,0 +1,108 @@
+.token--selector--background {
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.is--visible {
+    display: block !important;
+}
+
+.token--selector--wrapper {
+    background: red;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    border-radius: 8px;
+    max-width: 480px;
+    height: 380px;
+
+    background: rgb(21, 32, 43) none repeat scroll 0% 0%;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0) 3px 10px 18px;
+    padding: 1rem;
+    z-index: 100;
+}
+
+.token--selector--search--container {
+    position: relative;
+}
+
+.token--selector--search--input {
+    width: 100%;
+    outline: currentcolor none medium;
+    background: rgba(0, 0, 0, 0) none repeat scroll 0px center;
+    padding: 1rem 0px 1rem 1rem;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* results container */
+.token--selector--results--container {
+    display: grid;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.token--item {
+    font-size: 16px;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    margin: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+    border-radius: 0px;
+    cursor: pointer;
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    position: relative;
+}
+
+/* token--item */
+
+.token--item--img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.token--item--name {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+}
+
+.token--item--symbol {
+    color: rgb(255, 255, 255);
+    opacity: 0.6;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.name--symbol--container {
+    overflow-wrap: break-word;
+    inline-size: inherit;
+}
+
+.token--address--formatted {
+    color: rgb(255, 255, 255);
+    opacity: 0.75;
+}
+
+.token--selector--amount {
+    position: absolute;
+    right: 1.5rem;
+    color: #fff;
+}

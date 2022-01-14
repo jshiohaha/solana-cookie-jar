@@ -1,0 +1,97 @@
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.cookie--jar--background {
+    height: 250px;
+    max-width: 400px;
+    background-color: #000;
+    margin: auto;
+    margin-top: 25px;
+    background: rgb(235, 99, 51);
+    background: linear-gradient(302deg, rgba(235, 99, 51, 1) 0%, rgba(213, 96, 179, 1) 75%, rgba(170, 72, 172, 1) 100%);
+    border-radius: 8px;
+}
+
+.cookie--jar--title {
+    color: #fff;
+    margin: 0;
+}
+
+.cookie--jar--body {
+    position: relative;
+    height: 100%;
+    padding: 1rem 1rem 0 1rem;
+}
+
+.token--display--container {
+    width: 49%;
+    height: 3.25rem;
+}
+
+.input--container {
+    height: 3.25rem;
+    margin: 0.5rem 0;
+    position: relative;
+
+    /* restrict width */
+    width: 49%;
+}
+
+.transfer--button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    position: relative;
+    margin-top: 3rem;
+
+    border-radius: 0.5rem;
+    border: none;
+    height: 2rem;
+}
+
+.transfer--button--disabled {
+    background: #404144;
+    color: #999;
+    cursor: auto;
+    pointer-events: none;
+}
+
+/* amount & token selector */
+.amount--token--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.token--message--container {
+    height: 5rem;
+}
+
+/* stylings that only CookieJar should pick up based on browser window */
+@media screen and (max-width: 385px) {
+    .input--container {
+        width: 100%;
+    }
+
+    .amount--token--container {
+        flex-direction: column;
+    }
+
+    .token--display--container {
+        width: 100%;
+    }
+
+    .token--selector--container {
+        margin: 0;
+    }
+
+    .message--input--container {
+        margin-top: 10px;
+    }
+}

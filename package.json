@@ -1,0 +1,64 @@
+{
+  "name": "solana-cookie-jar",
+  "version": "0.0.1",
+  "description": "Library for embedded React components that enable anyone to send SOL and SPL tokens 🍬",
+  "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "homepage": "https://github.com/jshiohaha/solana-cookie-jar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jshiohaha/solana-cookie-jar.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "copy-files": "copyfiles -u 1 src/**/*.{svg,css} dist/cjs && copyfiles -u 1 src/**/*.{css,svg} dist/esm",
+    "build": "yarn clean && yarn build:esm && yarn build:cjs && yarn copy-files",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "lint:fix": "prettier src/**/*.{ts,tsx} -w",
+    "lint": "prettier src/**/*.{ts,tsx} --check",
+    "prepare": "yarn build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-tokens": "ts-node ./src/scripts/updateTokenList.ts"
+  },
+  "keywords": [
+    "solana",
+    "sol",
+    "spl",
+    "tokens"
+  ],
+  "author": "Jacob Shiohira <dev@jacobshiohira.com> (https://cookiejar.jacobshiohira.com)",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@project-serum/anchor": "^0.20.0",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/spl-token-registry": "^0.2.1326",
+    "@solana/wallet-adapter-base": "^0.9.1",
+    "@solana/wallet-adapter-react": "^0.15.1",
+    "@solana/wallet-adapter-react-ui": "^0.9.2",
+    "@solana/web3.js": "^1.31.0",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2"
+  }
+}

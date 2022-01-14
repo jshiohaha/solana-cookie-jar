@@ -1,0 +1,17 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# build output
+/dist
+
+# misc
+**/.DS_Store
+.env
+npm-debug.log
+yarn.lock
+package-lock.json
+
+/notes

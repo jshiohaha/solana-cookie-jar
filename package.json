@@ -26,8 +26,7 @@
     "lint:fix": "prettier src/**/*.{ts,tsx} -w",
     "lint": "prettier src/**/*.{ts,tsx} --check",
     "prepare": "yarn build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "update-tokens": "ts-node ./src/scripts/updateTokenList.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "solana",

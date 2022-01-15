@@ -1,41 +1,29 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { ENV } from '@solana/spl-token-registry';
+import { PublicKey, Connection } from '@solana/web3.js';
 
 /** local helper functions & vars */
-import { ENVS } from '../../utils/constant';
+import { useTokens } from '../../hooks/useTokens';
 import { getFormattedAddress } from '../../utils/address';
-import { TokenAccount, AugmentedTokenInfo, augmentTokenAccounts } from '../../utils/account';
-import { InvalidChainIdError } from '../../errors';
 
 /** local asset import */
 import '../../assets/styles/common.css';
 import './TokenSelector.css';
 
 export interface TokenSelectorProps {
+    publicKey: PublicKey;
+    connection: Connection;
     isVisible: boolean;
     env: ENV;
-    tokens: TokenAccount[];
     onTokenSelected: (token: any) => void;
     onClose: () => void;
 }
 
 export const TokenSelector = (props: TokenSelectorProps) => {
-    const { isVisible, env, onTokenSelected, onClose } = props;
-
+    const { publicKey, connection, isVisible, env, onTokenSelected, onClose } = props;
     const modalRef = useRef<HTMLDivElement>(null);
-
+    const tokens = useTokens(connection, env, publicKey);
     const [searchInput, setSearchInput] = useState<string>('');
-    const [tokens, setTokens] = useState<AugmentedTokenInfo[]>([]);
-
-    useEffect(() => {
-        if (!ENVS.includes(env)) {
-            throw new InvalidChainIdError(`Invalid env: ${env}`);
-        }
-
-        const augmentedTokens = augmentTokenAccounts(props.tokens, env);
-
-        setTokens(augmentedTokens);
-    }, [env, props.tokens]);
 
     useEffect(() => {
         const _handleClickOutside = (e: any) => {
@@ -71,6 +59,14 @@ export const TokenSelector = (props: TokenSelectorProps) => {
 
         return resultToken;
     }, [tokens, searchInput]);
+
+    // when tokens are loaded, we want to tell the calling component by "selecting" the first
+    // one as default to auto populate
+    useEffect(() => {
+        if (tokens.length > 0) {
+            onTokenSelected(tokens[0]);
+        }
+    }, [tokens]);
 
     return (
         <div className={`token--selector--background ${isVisible ? 'is--visible' : ''}`}>

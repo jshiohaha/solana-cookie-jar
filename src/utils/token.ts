@@ -4,9 +4,6 @@ import { PublicKey, Connection } from '@solana/web3.js';
 /** local helper functions & vars */
 import { TokenAccount, AugmentedTokenInfo, parseTokenAccountData } from './account';
 import { DEFAULT_SOL_TOKEN, TOKEN_PROGRAM_ID } from './constant';
-import * as chain101Tokens from '../data/tokens/101/tokens.json';
-import * as chain102Tokens from '../data/tokens/102/tokens.json';
-import * as chain103Tokens from '../data/tokens/103/tokens.json';
 import { InvalidPublicKeyError, InvalidTokenAmountError } from '../errors';
 
 // local asset import
@@ -21,31 +18,17 @@ export const DEFAULT_TOKEN_INFO = {
     logoURI: DEFAULT_SOL_TOKEN['logoURI'],
 };
 
-export const getTokenInfo = (token: TokenAccount, env: number) => {
-    const knownTokens = getKnownTokens(env);
-
-    const tokenMint = token.data.tokenAccountInfo.mint.toString();
-    const optionalTokenInfo = knownTokens[tokenMint];
-
-    const tokenInfo = optionalTokenInfo
-        ? optionalTokenInfo
-        : DEFAULT_SOL_TOKEN['address'] === tokenMint
-        ? DEFAULT_TOKEN_INFO
-        : ({
-              chainId: env,
-              address: tokenMint,
-              symbol: 'UNKOWN',
-              name: 'Unkown Token',
-              // for unknown tokens, we will use raw amount and not use a power for token decimals.
-              decimals: token.data.tokenAccountInfo.tokenAmount.decimals,
-              logoURI: questionMark,
-          } as TokenInfo);
-
+export const getUnkownTokenInfo = (token: TokenAccount, env: ENV) => {
     return {
-        tokenAccountData: token,
-        tokenInfo,
-    };
-};
+        chainId: env,
+        address: token.data.tokenAccountInfo.mint.toString(),
+        symbol: 'UNKOWN',
+        name: 'Unkown Token',
+        // for unknown tokens, we will use raw amount and not use a power for token decimals.
+        decimals: token.data.tokenAccountInfo.tokenAmount.decimals,
+        logoURI: questionMark,
+    } as TokenInfo;
+}
 
 export const computeTokenAmount = (amount: number | string, token: AugmentedTokenInfo): number => {
     const numericAmount = +amount;
@@ -57,33 +40,23 @@ export const computeTokenAmount = (amount: number | string, token: AugmentedToke
     return numericAmount * Math.pow(10, token.tokenInfo.decimals);
 };
 
-export const getKnownTokens = (env: ENV) => {
-    if (env === ENV.Devnet) {
-        return (chain103Tokens as any).default;
-    } else if (env === ENV.Testnet) {
-        return (chain102Tokens as any).default;
-    }
-
-    return (chain101Tokens as any).default;
-};
-
 export const getTokensInWallet = async (pubKey: PublicKey | null, connection: Connection) => {
     if (!pubKey) {
         throw new InvalidPublicKeyError('Must provide a valid PublicKey.');
     }
 
-    let tokenAccounts = [];
+    let tokenAccounts: TokenAccount[] = [];
     const solTokens = await connection.getBalance(pubKey);
 
     if (solTokens > 0) {
         const uiAmount: string = `${(solTokens / 10 ** DEFAULT_SOL_TOKEN['decimals']).toFixed(4)}`;
 
         const solTokenAccount = {
-            pubkey: DEFAULT_SOL_TOKEN['address'],
+            pubkey: new PublicKey(DEFAULT_SOL_TOKEN['address']),
             data: {
                 tokenAccountInfo: {
                     isNative: true,
-                    mint: DEFAULT_SOL_TOKEN['address'],
+                    mint: new PublicKey(DEFAULT_SOL_TOKEN['address']),
                     owner: pubKey,
                     program: 'spl-tokens',
                     space: '0',
@@ -99,7 +72,7 @@ export const getTokensInWallet = async (pubKey: PublicKey | null, connection: Co
                 owner: pubKey.toString(),
                 rentEpoch: 0,
             },
-        } as any;
+        } as TokenAccount;
 
         tokenAccounts.push(solTokenAccount);
     }
@@ -113,15 +86,18 @@ export const getTokensInWallet = async (pubKey: PublicKey | null, connection: Co
             pubkey: obj['pubkey'],
             data: parseTokenAccountData(obj['account']),
         } as TokenAccount;
+    }).filter((token: TokenAccount) => {
+        // token is an NFT
+        const isNft = token.data.tokenAccountInfo.tokenAmount.decimals === 0;
+        // no token amount in the account
+        const nonZeroAmount = +token.data.tokenAccountInfo.tokenAmount.amount === 0;
+       
+        return !isNft && !nonZeroAmount;
     });
 
     tokenAccounts.push(...parsedtokenAccounts);
 
     return tokenAccounts;
-};
-
-export const isSplToken = (token: any) => {
-    return token.pubkey !== DEFAULT_SOL_TOKEN['address'];
 };
 
 export const provideDefaultToken = () => {

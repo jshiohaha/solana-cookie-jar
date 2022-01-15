@@ -1,9 +1,5 @@
 import { PublicKey } from '@solana/web3.js';
-import { TokenInfo, ENV } from '@solana/spl-token-registry';
-
-/** local helper functions & vars */
-import { getTokenInfo } from './token';
-import { UnexpectedTokenLengthError } from '../errors';
+import { TokenInfo } from '@solana/spl-token-registry';
 
 export interface AugmentedTokenInfo {
     tokenInfo: TokenInfo;
@@ -69,32 +65,4 @@ export const parseTokenAccountData = (obj: any) => {
         owner: obj['owner'],
         rentEpoch: obj['rentEpoch'],
     } as TokenAccountData;
-};
-
-export const augmentTokenAccount = (token: TokenAccount, env: ENV): AugmentedTokenInfo => {
-    const augmentedTokens = augmentTokenAccounts([token], env);
-
-    if (augmentedTokens.length !== 1) {
-        throw new UnexpectedTokenLengthError(`Expected 1 augmented token, found ${augmentedTokens.length}`);
-    }
-
-    return augmentedTokens[0];
-};
-
-export const augmentTokenAccounts = (tokens: TokenAccount[], env: ENV): AugmentedTokenInfo[] => {
-    return tokens
-        .map((token: TokenAccount) => {
-            // token is an NFT
-            if (token.data.tokenAccountInfo.tokenAmount.decimals === 0) {
-                return null as any;
-            }
-
-            // no token amount in the account
-            if (+token.data.tokenAccountInfo.tokenAmount.amount === 0) {
-                return null as any;
-            }
-
-            return getTokenInfo(token, env);
-        })
-        .filter((token) => token); // filter out null results
 };

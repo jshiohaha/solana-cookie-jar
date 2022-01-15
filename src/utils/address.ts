@@ -34,25 +34,16 @@ const getExplorerBase = (explorer: ChainExplorers) => {
 };
 
 const getClusterQueryString = (env: ENV) => {
-    console.log('getClusterQueryString env: ', env);
-
     if (env === ENV.Devnet) {
-        console.log('Devnet');
         return '?cluster=devnet';
     } else if (env === ENV.Testnet) {
-        console.log('Testnet');
         return '?cluster=testnet';
     }
-
-    console.log('mainnet');
     return '';
 };
 
 export const getAddressLink = (addr: string, env: ENV, explorer?: ChainExplorers) => {
     const baseAddress = !explorer ? SOLANA_EXPLORER_ADDR : getExplorerBase(explorer);
-    console.log('getAddressLink env: ', env);
-
     const clusterQueryString = getClusterQueryString(env);
-    console.log('clusterQueryString: ', clusterQueryString);
     return `${baseAddress}/address/${addr}${clusterQueryString}`;
 };

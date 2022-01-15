@@ -1,12 +1,14 @@
 import { ENV } from '@solana/spl-token-registry';
 import { PublicKey } from '@solana/web3.js';
+import { TokenInfo } from '@solana/spl-token-registry';
 
 export const ENVS = [ENV.MainnetBeta, ENV.Testnet, ENV.Devnet];
 
 export const TOKEN_PROGRAM_ID = new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA');
 
-export const DEFAULT_SOL_TOKEN = {
+export const DEFAULT_SOL_TOKEN: TokenInfo = {
     address: 'So11111111111111111111111111111111111111112',
+    chainId: 101, // doesn't matter, SOL is SOL
     symbol: 'SOL',
     name: 'Solana',
     decimals: 9,

@@ -29,10 +29,6 @@ export class UnexpectedTokenLengthError extends CustomBaseError {
     name = 'UnexpectedTokenLengthError';
 }
 
-export class InvalidChainIdError extends CustomBaseError {
-    name = 'InvalidChainIdError';
-}
-
 export class UnableToLoadTokensError extends CustomBaseError {
     name = 'UnableToLoadTokensError';
 }

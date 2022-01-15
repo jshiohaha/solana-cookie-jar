@@ -1,6 +1,6 @@
 {
   "name": "solana-cookie-jar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Library for embedded React components that enable anyone to send SOL and SPL tokens 🍬",
   "license": "MIT",
   "main": "./dist/cjs/index.js",

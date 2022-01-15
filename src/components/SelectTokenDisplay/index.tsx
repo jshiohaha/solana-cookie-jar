@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { PublicKey, Connection } from '@solana/web3.js';
 import { ENV } from '@solana/spl-token-registry';
 
-import { TokenSelector } from '../TokenSelector/index';
+import { TokenSelector } from '../TokenSelector';
 import { AugmentedTokenInfo } from '../../utils/account';
-import { DEFAULT_TOKEN_INFO } from '../../utils/token';
+import { DEFAULT_TOKEN_INFO } from '../../constants';
 
 import '../../assets/styles/common.css';
 import './SelectTokenDisplay.css';

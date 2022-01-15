@@ -1,0 +1,53 @@
+{
+  "name": "solana-cookie-jar-demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@project-serum/anchor": "^0.14.0",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/spl-token-registry": "^0.2.759",
+    "@solana/wallet-adapter-base": "^0.5.2",
+    "@solana/wallet-adapter-material-ui": "^0.11.0",
+    "@solana/wallet-adapter-react": "^0.11.0",
+    "@solana/wallet-adapter-react-ui": "^0.6.1",
+    "@solana/wallet-adapter-wallets": "^0.9.0",
+    "@solana/web3.js": "^1.27.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.3",
+    "react-countdown": "^2.3.2",
+    "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.2.0",
+    "react-scripts": "4.0.3",
+    "solana-cookie-jar": "file:..",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

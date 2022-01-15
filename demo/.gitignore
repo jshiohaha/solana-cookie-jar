@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# build output
+/dist
+/build
+
+# misc
+**/.DS_Store
+.env
+npm-debug.log
+yarn.lock
+package-lock.json
+
+/notes
+# Local Netlify folder
+.netlify
+netlify.toml

@@ -1,0 +1,58 @@
+.network--selector--wrapper {
+    position: relative;
+}
+
+.network--selector--button {
+    background-color: #404144;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+}
+
+.network--selector--button:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15) 0 0);
+}
+
+.network--selector--dropdown {
+    padding: 0;
+    list-style: none;
+    position: relative;
+    width: inherit;
+    background-color: #404144;
+    margin: 0;
+    border-radius: 0 0 6px 6px;
+    display: none;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15) 0 0);
+}
+
+.network--selector--dropdown--visible {
+    display: block;
+}
+
+.network--selector--visible {
+    border-radius: 6px 6px 0 0;
+}
+
+.network--selector--option {
+    color: #FFF;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    height: 2rem;
+    padding-top: 0.5rem;
+}
+
+.network--selector--option:hover {
+    cursor: pointer;
+    background-color: #404144;
+    border-radius: 0 0 6px 6px;
+}

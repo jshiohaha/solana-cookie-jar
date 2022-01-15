@@ -1,0 +1,118 @@
+.wrapper {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.card--background {
+    background-color: #000;
+    margin: auto;
+    margin-top: 25px;
+    background: rgb(235, 99, 51);
+    background: linear-gradient(302deg, rgba(235, 99, 51, 1) 0%, rgba(213, 96, 179, 1) 75%, rgba(170, 72, 172, 1) 100%);
+    border-radius: 8px;
+    max-width: 500px;
+    position: relative;
+    top: 10rem;
+}
+
+#container {
+    width: 100%;
+    background: inherit;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+#container:before {
+    height: 100%;
+    width: 100%;
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: inherit;
+    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.2);
+    filter: blur(10px);
+}
+
+.connection--container {
+    display: flex;
+    flex-direction: row;
+}
+
+.wallet--button--container {
+    display: flex;
+    flex-direction: row;
+}
+
+.wallet-connect--base {
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+
+    font-family: Inter, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.wallet-connect {
+    background-color: #4e44ce;
+    color: #fff;
+    cursor: pointer;
+}
+
+.wallet-disconnect {
+    background: #404144;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.address--link {
+    color: green;
+}
+
+.address--link:visited {
+    color: green;
+}
+
+.address--link:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+.source--link--container {
+    width: max-content;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    z-index: 100;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background: #404144;
+    color: #999;
+}
+
+.source--link--container > a {
+    color:#FFF;
+}
+
+.source--link--container > a:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 385px) {
+    .card--background {
+        max-width: 300px;
+    }
+
+    .connection--container {
+        flex-direction: column;
+    }
+}

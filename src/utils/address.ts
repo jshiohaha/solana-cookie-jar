@@ -1,8 +1,9 @@
 import { ENV } from '@solana/spl-token-registry';
 
+import { SOLANA_EXPLORER_ADDR, SOLSCAN_ADDR, SOLANA_BEACH_ADDR } from '../constants';
 import { InvalidExplorerError } from '../errors';
 
-export enum ChainExplorers {
+enum ChainExplorers {
     SOLANA_EXPLORER = 'Solana Explorer',
     SOLSCAN = 'Solscan',
     SOLANA_BEACH = 'Solana Beach',
@@ -16,10 +17,6 @@ export const getFormattedAddress = (addr: string, chunkSize: number = 4) => {
 
     return `${prefix}...${suffix}`;
 };
-
-const SOLANA_EXPLORER_ADDR = 'https://explorer.solana.com';
-const SOLSCAN_ADDR = 'https://solscan.io';
-const SOLANA_BEACH_ADDR = 'https://solanabeach.io';
 
 const getExplorerBase = (explorer: ChainExplorers) => {
     if (explorer === ChainExplorers.SOLANA_EXPLORER) {

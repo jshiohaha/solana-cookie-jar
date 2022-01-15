@@ -3,7 +3,7 @@ import { Connection, PublicKey, Commitment } from '@solana/web3.js';
 
 import { TokenAccountNotFoundError, TokenInvalidAccountOwnerError, TokenInvalidAccountSizeError } from '../../errors';
 
-export enum AccountState {
+enum AccountState {
     Uninitialized = 0,
     Initialized = 1,
     Frozen = 2,

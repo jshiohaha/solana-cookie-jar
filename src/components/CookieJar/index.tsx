@@ -14,7 +14,7 @@ import { AugmentedTokenInfo } from '../../utils/account';
 import { computeTokenAmount, provideDefaultToken, doesWalletHaveTokens } from '../../utils/token';
 import { getFormattedAddress, getAddressLink } from '../../utils/address';
 import { createNewConnection } from '../../utils/env';
-import { MAX_MESSAGE_LENGTH_IN_CHARS, MESSAGE_INPUT_DEFAULT } from '../../utils/constant';
+import { MAX_MESSAGE_LENGTH_IN_CHARS, MESSAGE_INPUT_DEFAULT } from '../../constants';
 
 import '../../assets/styles/common.css';
 import './CookieJar.css';

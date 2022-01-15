@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { PublicKey, Connection } from '@solana/web3.js';
-import { ENV } from "@solana/spl-token-registry";
+import { ENV } from '@solana/spl-token-registry';
 import { TokenListProvider, TokenInfo } from '@solana/spl-token-registry';
 
 import { getTokensInWallet, getUnkownTokenInfo } from '../utils/token';
@@ -12,29 +12,23 @@ export const useTokens = (connection: Connection, env: ENV, publicKey: PublicKey
     const [tokenMap, setTokenMap] = useState<Map<string, TokenInfo>>(new Map());
 
     useEffect(() => {
-        console.log('load tokens from provider...');
+        new TokenListProvider().resolve().then((tokens) => {
+            const tokenList = tokens.filterByChainId(env).excludeByTag('nft').getList();
 
-        new TokenListProvider().resolve().then(tokens => {
-            const tokenList = tokens
-                .filterByChainId(env)
-                .excludeByTag('nft')
-                .getList();
-    
-          setTokenMap(tokenList.reduce((map, item) => {
-            map.set(item.address.toString(), item);
-            return map;
-          }, new Map()));
+            setTokenMap(
+                tokenList.reduce((map, item) => {
+                    map.set(item.address.toString(), item);
+                    return map;
+                }, new Map())
+            );
         });
-      }, [env]);
+    }, [env]);
 
     useEffect(() => {
         getTokensInWallet(publicKey, connection)
-            .then(tokensInWallet => {
-                const augmentedTokens = tokensInWallet.map(token => {
+            .then((tokensInWallet) => {
+                const augmentedTokens = tokensInWallet.map((token) => {
                     const tokenMintAddress = token.data.tokenAccountInfo.mint.toString();
-
-                    console.log('tokenMintAddress: ', tokenMintAddress);
-                    console.log('map has token?: ', tokenMap.has(tokenMintAddress));
 
                     let tokenInfo: TokenInfo;
                     if (tokenMap.has(tokenMintAddress)) {
@@ -48,7 +42,7 @@ export const useTokens = (connection: Connection, env: ENV, publicKey: PublicKey
                         tokenAccountData: token,
                         tokenInfo,
                     };
-                })
+                });
 
                 setTokens(augmentedTokens);
             })

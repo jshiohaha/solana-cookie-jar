@@ -29,8 +29,7 @@ export const TokenAmountInput = (props: InputFieldProps) => {
         const value = +e.target.value;
 
         // is value valid from min POV, if supplied
-        const isCurrentInputValid = !Number.isNaN(value)
-            && (!min ? true : value >= min);
+        const isCurrentInputValid = !Number.isNaN(value) && (!min ? true : value >= min);
 
         setIsInputValid(isCurrentInputValid);
         setAmount(e.target.value);

@@ -4,7 +4,7 @@ import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { SystemProgram, PublicKey, Transaction, TransactionInstruction, Connection } from '@solana/web3.js';
 
 /** local helper functions & vars */
-import { DEFAULT_SOL_TOKEN, UTF_8, MAX_MESSAGE_LENGTH_IN_CHARS, MEMO_PROGRAM_PUBLIC_KEY } from '../utils/constant';
+import { DEFAULT_SOL_TOKEN, UTF_8, MAX_MESSAGE_LENGTH_IN_CHARS, MEMO_PROGRAM_ID } from '../constants';
 import { getOrCreateAssociatedTokenAccount } from '../utils/transfer/getOrCreateAssociatedTokenAccount';
 import { createTransferInstruction } from '../utils/transfer/createTransferInstructions';
 import { MessageTooLarge } from '../errors';
@@ -19,7 +19,7 @@ const addTransactionMemo = async (tx: Transaction, publicKey: PublicKey, message
         new TransactionInstruction({
             keys: [{ pubkey: publicKey, isSigner: true, isWritable: true }],
             data: Buffer.from(message, UTF_8),
-            programId: MEMO_PROGRAM_PUBLIC_KEY,
+            programId: MEMO_PROGRAM_ID,
         })
     );
 };

@@ -162,9 +162,7 @@ export const CookieJar = (props: CookieJarProps) => {
                     className={`btn transfer--button ${_isSubmitDisabled() && 'input--disabled'}`}
                     onClick={_onSubmit}
                 >
-                    <h2>
-                        {!_doesWalletHaveTokens() ? 'Wallet is empty' : actionButtonText ? actionButtonText : 'Send'}
-                    </h2>
+                    {!_doesWalletHaveTokens() ? 'Wallet is empty' : actionButtonText ? actionButtonText : 'Send'}
                 </button>
             </div>
         </>

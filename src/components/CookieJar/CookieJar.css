@@ -43,7 +43,8 @@ input:focus {
     background-color: red;
     color: white;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 500;
     position: absolute;
     bottom: 1rem;
     width: 100%;

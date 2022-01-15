@@ -13,7 +13,7 @@
   <p align="center">
     Library for embedded React components that enable anyone to send SOL and SPL tokens 🍬
     <br />
-    <a href="#">Demo (soon)</a>
+    <a href="https://cookiejar.jacobshiohira.com">Demo</a>
     ·
     <a href="https://github.com/jshiohaha/solana-cookie-jar/issues">Report Bug</a>
     ·
@@ -130,9 +130,9 @@ If you're going to develop locally, you will need to reference the local compone
 
 ## Roadmap
 
--   [] Add base components for genesis version 🥳
+-   [x] Add base components for genesis version 🥳
+-   [x] Add a working demo
 -   [] Add a changelog
--   [] Add a working demo
 -   [] Create common package for shared logic/components
 -   [] Improve documentation 🔁
 -   [] More to come 🧞

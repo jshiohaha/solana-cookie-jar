@@ -15,3 +15,5 @@ yarn.lock
 package-lock.json
 
 /notes
+# Local Netlify folder
+.netlify

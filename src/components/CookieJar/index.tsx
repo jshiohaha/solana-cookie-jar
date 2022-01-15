@@ -51,10 +51,6 @@ export const CookieJar = (props: CookieJarProps) => {
         actionButtonText,
     } = props;
 
-    const publicKey = useMemo(() => {
-        return walletContextState.publicKey;
-    }, [walletContextState.publicKey]);
-
     // create connection obj here & pass down so that child components can make
     // RPC requests. similar to creating a custom context for wallet mentioned above,
     // it might make more sense to create custom, global connection context.
@@ -90,7 +86,7 @@ export const CookieJar = (props: CookieJarProps) => {
     };
 
     const _isSubmitDisabled = () => {
-        return publicKey === null || !doesWalletHaveTokens(token);
+        return walletContextState.publicKey === null || !doesWalletHaveTokens(token);
     };
 
     const _doesWalletHaveTokens = () => {
@@ -118,7 +114,7 @@ export const CookieJar = (props: CookieJarProps) => {
                             rel="noreferrer"
                             href={getAddressLink(destinationAddress.toString(), env)}
                         >
-                            <b>{getFormattedAddress(destinationAddress.toString())}</b>
+                            {getFormattedAddress(destinationAddress.toString())}
                         </a>
                     </span>
                 )}
@@ -134,15 +130,15 @@ export const CookieJar = (props: CookieJarProps) => {
                                     ? +token.tokenAccountData?.data.tokenAccountInfo.tokenAmount.uiAmount
                                     : undefined
                             }
-                            disabled={publicKey === null}
+                            disabled={walletContextState.publicKey === null}
                         />
                     </div>
                     <div className="token--display--container">
                         <SelectTokenDisplay
-                            publicKey={publicKey!}
+                            publicKey={walletContextState.publicKey!}
                             env={env}
                             connection={connection}
-                            disabled={publicKey === null}
+                            disabled={walletContextState.publicKey === null}
                             onError={onError}
                             onSelectToken={_onSelectToken}
                         />
@@ -152,7 +148,7 @@ export const CookieJar = (props: CookieJarProps) => {
                 {showMessageInput && (
                     <div className="token--message--container">
                         <TokenMessageInput
-                            disabled={publicKey === null}
+                            disabled={walletContextState.publicKey === null}
                             toggleReset={walletContextState.connected}
                             placeholderContent={MESSAGE_INPUT_DEFAULT}
                             maxContentChars={MAX_MESSAGE_LENGTH_IN_CHARS}

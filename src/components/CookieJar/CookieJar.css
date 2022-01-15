@@ -73,6 +73,24 @@ input:focus {
     height: 5rem;
 }
 
+.destination--address--link {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.destination--address--link:hover {
+    text-decoration: underline;
+}
+
+.destination--address--link:visited {
+    color: #fff;
+}
+
+.destination--address--link:active {
+    color: #fff;
+}
+
 /* stylings that only CookieJar should pick up based on browser window */
 @media screen and (max-width: 385px) {
     .input--container {
